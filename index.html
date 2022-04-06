@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+<body>
+    <h1>Make your selection below!</h1>
+    <button id="rock" value="Rock" onclick="choice(this); test(this)" data-clicked="0">Rock</button>
+    <button id="paper" value="Paper" onclick="choice(this); test(this)" data-clicked="0">Paper</button>
+    <button id="scissors" value="Scissors" onclick="choice(this); test(this)" data-clicked="0">Scissors</button>
+<script>
+
+function choice(el) {
+    var pChoice = el.getAttribute("value");
+    var myArray = ["Rock","Paper","Scissors"];
+    var cChoice = myArray[Math.floor(Math.random()*myArray.length)];
+    compareChoices(pChoice, cChoice);
+}
+
+function compareChoices(pChoice, cChoice){
+    var currentChoices = (pChoice + " vs " + cChoice);
+
+// Tie check
+      if (pChoice === cChoice) {
+        alert(`${currentChoices} is a Tie`);
+        return;
+      }
+
+      // Rock
+      if (pChoice === "Rock") {
+        if (cChoice === "Scissors") {
+          alert(`${currentChoices} = You Win`);
+        } else {
+          alert(`${currentChoices} = Computer Wins`);
+        }
+      }
+
+      // Paper
+      else if (pChoice === "Paper") {
+        if (cChoice === "Rock") {
+          alert(`${currentChoices} = You Win`);
+        } else {
+          alert(`${currentChoices} = Computer Wins`);
+        }
+      }
+
+      // Scissors
+      else if (pChoice === "Scissors") {
+        if (cChoice === "Paper") {
+          alert(`${currentChoices} = You Win`);
+        } else {
+          alert(`${currentChoices} = Computer Wins`);
+        }
+      }
+
+    }
+
+  function test(sender) {
+  rock.dataset.clicked++;
+  paper.dataset.clicked++;
+  scissors.dataset.clicked++;
+
+  console.log("I've been clicked", rock.dataset.clicked);
+  console.log("I've been clicked", paper.dataset.clicked);
+  console.log("I've been clicked", scissors.dataset.clicked);
+  
+  if (+sender.dataset.clicked === 3) {
+    // unbind the event
+    rock.style.display = "none";
+    paper.style.display="none";
+    scissors.style.display="none";
+    alert("That's 3 games, don't you think you've had enough?")
+  }
+  
+  return;
+}
+</script>
+</body>
+</html>
